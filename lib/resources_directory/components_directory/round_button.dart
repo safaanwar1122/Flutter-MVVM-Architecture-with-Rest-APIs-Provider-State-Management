@@ -26,7 +26,7 @@ class RoundButton extends StatelessWidget {
         ),
         child: Center(
             child: loading
-                ? CircleAvatar()
+                ? CircularProgressIndicator(color: Colors.white,strokeWidth: 3,)
                 : Text(
                     title,
                     style: TextStyle(color: AppColors.whiteColor),
