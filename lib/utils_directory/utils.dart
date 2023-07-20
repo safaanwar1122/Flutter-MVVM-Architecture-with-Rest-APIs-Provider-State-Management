@@ -6,6 +6,13 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 //another way of doing utils is flush bar
 class Utils {
+  static void fieldFocusChange(
+      BuildContext context,
+      FocusNode current,
+      FocusNode nextFocus) {
+    FocusScope.of(context).requestFocus(nextFocus);
+  }
+
   static toastMessage(String message) {
     Fluttertoast.showToast(
       msg: message,
@@ -38,9 +45,7 @@ class Utils {
   }
 
   static snackBar(String message, BuildContext context) {
-    return ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(
-        backgroundColor: Colors.red,
-        content: Text(message)));
+    return ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(backgroundColor: Colors.red, content: Text(message)));
   }
 }
