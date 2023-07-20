@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:mvvm_architecture_provider/resources_directory/components_directory/round_button.dart';
 import 'package:mvvm_architecture_provider/utils_directory/routes_directory/routes_names.dart';
-import 'package:mvvm_architecture_provider/view_directory/home_screen.dart';
-import 'package:mvvm_architecture_provider/view_model_directory/auth_view_model.dart';
 import 'package:provider/provider.dart';
 
+import '../resources_directory/components_directory/round_button.dart';
 import '../utils_directory/utils.dart';
+import '../view_model_directory/auth_view_model.dart';
 
-class LoginView extends StatefulWidget {
-  const LoginView({Key? key}) : super(key: key);
+class SignUpView extends StatefulWidget {
+  const SignUpView({Key? key}) : super(key: key);
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<SignUpView> createState() => _SignUpViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _SignUpViewState extends State<SignUpView> {
   ValueNotifier<bool> _obsecurePassword = ValueNotifier<bool>(true);
   TextEditingController _emailController = TextEditingController();
 
@@ -36,12 +35,12 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-     final authViewMode=Provider.of<AuthViewModel>(context);
+    final authViewMode=Provider.of<AuthViewModel>(context);
     final height = MediaQuery.of(context).size.height * 1;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Login Screen '),
+        title: Text('SignUp  Screen '),
       ),
       body: SafeArea(
         child: Column(
@@ -78,7 +77,7 @@ class _LoginViewState extends State<LoginView> {
                         suffix: InkWell(
                             onTap: () {
                               _obsecurePassword.value =
-                                  !_obsecurePassword.value;
+                              !_obsecurePassword.value;
                             },
                             child: Icon(_obsecurePassword.value
                                 ? Icons.visibility_off_outlined
@@ -87,8 +86,8 @@ class _LoginViewState extends State<LoginView> {
                 }),
             SizedBox(height: height * .005),
             RoundButton(
-              title: 'Login',
-              loading: authViewMode.loading,
+              title: 'SignUp ',
+              loading: authViewMode.signUpLoading,
               onPress: () {
                 if (_emailController.text.isEmpty) {
                   Utils.snackBar('plz enter email', context);
@@ -103,7 +102,7 @@ class _LoginViewState extends State<LoginView> {
                     'email':_emailController.text.toString(),
                     'password':_passwordController.text.toString(),
                   };
-                  authViewMode.loginApi(data, context);
+                  authViewMode.signUpApi(data, context);
                   print('API hit');
                 }
               },
@@ -111,9 +110,9 @@ class _LoginViewState extends State<LoginView> {
             SizedBox(height: height * .02),
             InkWell(
                 onTap: (){
-                  Navigator.pushNamed(context, RoutesName.signUp);
+                  Navigator.pushNamed(context, RoutesName.login);
                 },
-                child: Text("Don't haved an account? Sign Up")),
+                child: Text("Already haved an account?Login")),
           ],
         ),
       ),

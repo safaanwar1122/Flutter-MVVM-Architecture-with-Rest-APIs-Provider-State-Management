@@ -4,4 +4,6 @@ class RoutesName {
   //home screen routes name or dashboard,
   // bottom next bar routes
   static const String home = 'Home_Screen';
+
+  static const String signUp = 'SignUp_Screen';
 }
