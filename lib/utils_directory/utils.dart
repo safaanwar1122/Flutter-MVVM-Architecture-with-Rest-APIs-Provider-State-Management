@@ -6,6 +6,13 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 //another way of doing utils is flush bar
 class Utils {
+  static double averageRating(List<int>rating){
+    var avgRating=0;
+    for(int i=0; i<rating.length;i++){
+   avgRating=avgRating+rating[i];   
+    }
+    return double.parse((avgRating/rating.length).toStringAsFixed(1));
+  }
   static void fieldFocusChange(
       BuildContext context,
       FocusNode current,

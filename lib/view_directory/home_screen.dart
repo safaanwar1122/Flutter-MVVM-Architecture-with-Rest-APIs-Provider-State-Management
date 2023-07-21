@@ -4,6 +4,7 @@ import 'package:mvvm_architecture_provider/view_model_directory/user_view_model.
 import 'package:provider/provider.dart';
 
 import '../data_directory/response_directory/status.dart';
+import '../utils_directory/utils.dart';
 import '../view_model_directory/home_view_model.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -47,12 +48,48 @@ class _HomeScreenState extends State<HomeScreen> {
           builder: (context, value, _) {
             switch (value.movieList.status) {
               case Status.LOADING:
-                return CircularProgressIndicator();
+                return Center(child: CircularProgressIndicator());
               case Status.ERROR:
-                return Text(value.movieList.message.toString());
-              case Status.LOADING:
-                return Text('uhfu');
+                return Center(
+                  child: Text(
+                    value.movieList.message.toString(),
+                  ),
+                );
 
+              case Status.COMPLETED:
+                return ListView.builder(
+                    itemCount: value.movieList.data!.movies!.length,
+                    itemBuilder: (context, index) {
+                      return Card(
+                          child: ListTile(
+                        leading: Image.network(
+
+                            value.movieList.data!.movies![index].posterurl
+                                .toString(),
+                            errorBuilder: (context, error, statck) {
+                          return Icon(Icons.error, color: Colors.red);
+                        },
+                        height: 40,
+                          width: 40,
+                          fit:BoxFit.cover,
+                        ),
+                        title: Text(value.movieList.data!.movies![index].title
+                            .toString()),
+                        subtitle: Text(value.movieList.data!.movies![index].year
+                            .toString()),
+                        trailing: Row(
+                          children: [
+                            Text(Utils.averageRating(value
+                                    .movieList.data!.movies![index].ratings!)
+                                .toStringAsFixed(1)),
+                            Icon(
+                              Icons.star,
+                              color: Colors.yellow,
+                            ),
+                          ],
+                        ),
+                      ));
+                    });
             }
             return Container();
           },
