@@ -99,10 +99,16 @@ class _LoginViewState extends State<LoginView> {
                   Utils.toastMessage('plz enter 6 digits password ');
                   // Utils.flushBarErrorMessage(' plz enter 6 digits password ', context);
                 } else {
+                  // Map data={
+                  //   'email':_emailController.text.toString(),
+                  //   'password':_passwordController.text.toString(),
+                  // };
+
                   Map data={
-                    'email':_emailController.text.toString(),
-                    'password':_passwordController.text.toString(),
+                    'email':'eve.holt@reqres.in',
+                    'password':'cityslicka',
                   };
+
                   authViewMode.loginApi(data, context);
                   print('API hit');
                 }
