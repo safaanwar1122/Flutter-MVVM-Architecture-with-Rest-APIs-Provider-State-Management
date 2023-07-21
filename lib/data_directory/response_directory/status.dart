@@ -1,5 +1,5 @@
 
 
 enum Status {
-  LPADING, COMPLETED, ERROR
+  LOADING, COMPLETED, ERROR
 }

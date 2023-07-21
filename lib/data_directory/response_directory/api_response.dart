@@ -6,9 +6,9 @@ Status? status;
 T? data;// dynamic function getting data
 String? message;
 ApiResponse([this.status,this.data,this.message]);// created constructors
-ApiResponse.loading(): status=Status.LPADING;
-ApiResponse.completed(): status=Status.COMPLETED;
-ApiResponse.error(): status=Status.ERROR;
+ApiResponse.loading(): status=Status.LOADING;
+ApiResponse.completed(this.data): status=Status.COMPLETED;
+ApiResponse.error(this.message): status=Status.ERROR;
 //ApiResponse.atto(): status=Status.attp;
 @override
 String toString(){

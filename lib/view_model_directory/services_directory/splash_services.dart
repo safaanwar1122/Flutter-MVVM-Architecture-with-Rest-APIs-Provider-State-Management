@@ -1,6 +1,3 @@
-
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:mvvm_architecture_provider/utils_directory/routes_directory/routes_names.dart';
